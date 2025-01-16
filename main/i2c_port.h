@@ -1,3 +1,13 @@
+/**
+ * @file i2c_port.h
+ * @author by mondraker (https://oshwhub.com/mondraker)(https://github.com/HwzLoveDz)
+ * @brief 
+ * @version 0.1
+ * @date 2023-07-12
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #pragma once
 
 #include <stdio.h>
@@ -13,8 +23,8 @@ extern "C" {
 #define _I2C_NUMBER(num)            I2C_NUM_##num                           /*!< I2C port*/
 #define I2C_NUMBER(num)             _I2C_NUMBER(num)
 
-#define AXP_ISR_GPIO                (gpio_num_t)CONFIG_AXPxxx_INTERRUPT_PIN  /*!< axp power chip interrupt Pin*/
-#define GPIO_INPUT_PIN_SEL          (1ULL<<AXP_ISR_GPIO)
+#define RTC_ISR_GPIO                (gpio_num_t)CONFIG_BM8563_INTERRUPT_PIN  /*!< RTC chip interrupt Pin*/
+#define GPIO_INPUT_PIN_SEL          (1ULL<<RTC_ISR_GPIO)
 
 #define I2C_MASTER_SCL_IO           CONFIG_I2C_MASTER_SCL                   /*!< gpio number for I2C master clock */
 #define I2C_MASTER_SDA_IO           CONFIG_I2C_MASTER_SDA                   /*!< gpio number for I2C master data  */

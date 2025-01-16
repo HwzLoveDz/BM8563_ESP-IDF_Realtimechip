@@ -1,3 +1,13 @@
+/**
+ * @file i2c_port.c
+ * @author by mondraker (https://oshwhub.com/mondraker)(https://github.com/HwzLoveDz)
+ * @brief i2c port,easy component migration
+ * @version 0.1
+ * @date 2023-07-12
+ * 
+ * @copyright Copyright (c) 2023
+ * 
+ */
 #include "i2c_port.h"
 
 /**

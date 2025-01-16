@@ -3,19 +3,19 @@ menu "Example Configuration"
     menu "I2C Master"
         config I2C_MASTER_SCL
             int "SCL GPIO Num"
-            default 22
+            default 10
             help
                 GPIO number for I2C Master clock line.
 
         config I2C_MASTER_SDA
             int "SDA GPIO Num"
-            default 21
+            default 11
             help
                 GPIO number for I2C Master data line.
 
         config I2C_MASTER_PORT_NUM
             int "Port Number"
-            default 1
+            default 0
             help
                 Port number for I2C Master device.
 
@@ -25,11 +25,11 @@ menu "Example Configuration"
             help
                 I2C Speed of Master device.
 
-        config AXPxxx_INTERRUPT_PIN
+        config BM8563_INTERRUPT_PIN
             int "Interrupt Pin"
-            default 35
+            default 6
             help
-                axp202,192,173 interrupt pin.
+                I2C interrupt pin.
         
     endmenu
 
