@@ -40,9 +40,9 @@ static const char *TAG = "BM8563";
 RTC_DateTypeDef dateStruct; // RTC Date Struct
 RTC_TimeTypeDef timeStruct; // RTC Time Struct
 
-// #define SET_TIME
+// #define SET_TIME // comment this line to set time
 
-void rtc_bm8563_init();
+esp_err_t rtc_bm8563_init();
 void create_RTC_update_func(void);
 void rtcUpdateTask(void *pvParameters);
 
@@ -64,24 +64,27 @@ extern "C" void app_main(void)
 {
     ESP_ERROR_CHECK(i2c_master_init());
 
-    rtc_bm8563_init();
+    ESP_ERROR_CHECK(rtc_bm8563_init());
 
     xTaskCreatePinnedToCore(rtcUpdateTask, "rtc_Update_Task", 1024 * 3, NULL, 5, NULL, 0);
 }
 
-void rtc_bm8563_init()
+esp_err_t rtc_bm8563_init()
 {
-    if (rtc.begin(twi_read, twi_write, BM8563_ADDR)) //
+    if (rtc.begin(twi_read, twi_write, BM8563_ADDR))
     {
         ESP_LOGE(TAG, "Error init bm8563 !!!");
-        while (1);
+        return ESP_FAIL;
+    } else {
+        ESP_LOGI(TAG, "Success init bm8563 !!!");
     }
-    ESP_LOGI(TAG, "Success init bm8563 !!!");
 
 #ifdef SET_TIME
     // Set RTC Time
     rtc_set_time();
 #endif
+
+    return ESP_OK;
 }
 
 void create_RTC_update_func(void)
