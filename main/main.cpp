@@ -64,13 +64,6 @@ extern "C" void app_main(void)
 {
     ESP_ERROR_CHECK(i2c_master_init());
 
-    if (rtc.begin(twi_read, twi_write, BM8563_ADDR))    //
-    {
-        ESP_LOGE(TAG, "Error init bm8563 !!!");
-        while (1);
-    }
-    ESP_LOGI(TAG, "Success init bm8563 !!!");
-
     rtc_bm8563_init();
 
     xTaskCreatePinnedToCore(rtcUpdateTask, "rtc_Update_Task", 1024 * 3, NULL, 5, NULL, 0);
